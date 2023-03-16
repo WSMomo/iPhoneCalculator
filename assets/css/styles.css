@@ -20,13 +20,74 @@ body {
     flex-direction: column;
     height: 495px;
     width: 245px;
-    background-color: #000;
+    background-color: #080808;
     border-radius: 30px;
-    border: 3px #9AAABD solid;
     font-family: Helvetica, sans-serif;
+}
+#calculator:after, 
+#calculator:before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    content:'';
+    border-radius: 30px;
+}
+#calculator:before {
+    border: 4px solid gray;
+  }
+
+#calculator:after {
+    border: 2px solid white;
+    outline: 1px black solid;
+  }
+
+
+#camera{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    border: 1px #080808 solid;
+    background:linear-gradient(to right, green, blue);
+    border-radius: 50%;
+    height: 5px;
+    width: 5px;
 
 }
 
+#notch{
+    position: absolute;
+    top: 4px;
+    width: 90px;
+    height: 25px;
+    border-radius: 0 0 20px 20px;
+    background-color: #000;
+}
+
+
+#button-volume1, #button-volume2, #slider-volume{
+    position: absolute;
+    left: -3px;
+    width: 3px;
+    border: 1px #000 solid;
+    height: 37px;
+    background-color: #bec5c7;
+    border-radius: 10px 0 0 10px;
+}
+
+#slider-volume{
+    top: 100px;
+    height: 16px;
+}
+
+#button-volume1{
+    top: 134px;
+}
+
+#button-volume2{
+    top: 182px;
+}
 #status-bar{
     position: absolute;
     width: 100%;

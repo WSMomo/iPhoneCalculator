@@ -14,6 +14,7 @@ const equal = document.querySelector('#equal');
 
 let firstNumber = 0; //i numeri selezionati
 let arrayNumber = []; //i numeri e gli operatori selezionati 
+
 //ad ogni numero selezionato aggiungo il click
 numbers.forEach((number) => {
     number.addEventListener('click', () => {
@@ -23,13 +24,14 @@ numbers.forEach((number) => {
             arrayNumber.pop();
         }
         arrayNumber.push(+firstNumber);
+        if (arrayNumber[arrayNumber.length - 1] === '.') {
+            arrayNumber[arrayNumber.length - 1] = '0.';
+        }
         console.log(arrayNumber);
-        
+
         console.log(roundAll(arrayNumber))
         let operation = roundAll(arrayNumber).join('');
 
-        // let operation = arrayNumber.join('');
-        
         previousNumber.innerHTML = operation;
         currentNumber.innerHTML = firstNumber;
     })
@@ -79,7 +81,7 @@ function render(result) {
 
 //controlla se il numero è intero
 //se intero lo riporta senza virgola, altrimenti con i primi due numeri decimali
-function isInt(result){
+function isInt(result) {
     if (parseInt(result) != result) {
         currentNumber.innerHTML = result.toFixed(2);
     } else {
@@ -88,10 +90,10 @@ function isInt(result){
 }
 
 //preso un array con numeri e operatori ritorna il risultato
-function total(array){
+function total(array) {
     let finalOperation = '';
-     //trasformo l'array in stringa
-     for (let i = 0; i < array.length; i++) {
+    //trasformo l'array in stringa
+    for (let i = 0; i < array.length; i++) {
         finalOperation += array[i];
     }
     return eval(finalOperation); //eval svolge le operazioni all'interno della stringa
@@ -106,31 +108,30 @@ ac.addEventListener('click', () => {
 
 // al clic cambia il segno del numero che si sta inserendo
 plusMinus.addEventListener('click', () => {
-    arrayNumber[arrayNumber.length-1] *= -1;
-    currentNumber.innerHTML = arrayNumber[arrayNumber.length-1];
+    arrayNumber[arrayNumber.length - 1] *= -1;
+    currentNumber.innerHTML = arrayNumber[arrayNumber.length - 1];
 })
 
-percentage.addEventListener('click', ()=>{
-    arrayNumber[arrayNumber.length-1] /= 100;
-    currentNumber.innerHTML = arrayNumber[arrayNumber.length-1];
+percentage.addEventListener('click', () => {
+    arrayNumber[arrayNumber.length - 1] /= 100;
+    currentNumber.innerHTML = arrayNumber[arrayNumber.length - 1];
 })
 
 //controlla se l'ultimo valore di un array è un numero, se non lo è rimuove il valore
-function lastIsNaN(array){
-    if(isNaN(array[array.length-1])){
+function lastIsNaN(array) {
+    if (isNaN(array[array.length - 1])) {
         array.pop();
     }
 }
 
 function roundAll(array) {
     let numberRounded = array.map((num) => {
-      if (!isNaN(num) && num >= 10 && num < 100) {
-        return parseFloat(num.toFixed(2));
-      } else {
-        return num;
-      }
+        if (!isNaN(num) && num >= 10 && num < 100) {
+            return parseFloat(num.toFixed(2));
+        } else {
+            return num;
+        }
     });
-  
+
     return numberRounded;
-  }
-  
+}
