@@ -1,0 +1,124 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+#calculator {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 495px;
+    width: 245px;
+    background-color: #000;
+    border-radius: 30px;
+    border: 3px #9AAABD solid;
+    font-family: Helvetica, sans-serif;
+
+}
+
+#status-bar{
+    position: absolute;
+    width: 100%;
+    color: #fff;
+    top: 15px;
+    left: 30px;
+    font-size: 0.6em;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#icons{
+    margin-right: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#icons span{
+    font-size: 1.5em;
+}
+#screen {
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    flex-direction: column;
+    height: 30%;
+    width: 100%;
+    color: #fff;
+    padding-right: 30px;
+}
+
+
+
+#current-number{
+    font-size: 3em;
+}
+#previous-number{
+    font-size: 2em;
+    color: #A0A0A0;
+}
+
+#buttons {
+    height: 50%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 5px;
+}
+
+
+#buttons button {
+    font-size: 1.4em;
+    width: 45px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+
+.numbers[value="0"] {
+    grid-column: span 2;
+    width: 100px !important;
+    padding-left: 20px;
+    text-align: left;
+    border-radius: 30px !important;
+}
+
+.numbers {
+    background-color: #313131;
+    color: #fff;
+}
+
+#ac,
+#plus-minus,
+#percentage {
+    background-color: #A0A0A0;
+}
+
+#division,
+#multiplication,
+#subtraction,
+#addition,
+#equal {
+    background-color: #F69906;
+    color: #fff;
+    font-size: 200px;
+}
+
+#divider{
+    position: absolute;
+    width: 80px;
+    height: 3px;
+    background-color: white;
+    bottom: 15px;
+    border-radius: 2px;
+}
