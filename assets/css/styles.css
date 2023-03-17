@@ -12,7 +12,57 @@ body {
     height: 100vh;
     background-color: black;
 }
+/* header */
+header{
+    position: fixed;
+    display: flex;
+    align-items: center;
+    height: 7vh;
+    width: 100vw;
+}
+header{
+    top: 0;
+    justify-content: space-between;
+    z-index: 1;
+}
+h1{
+    color: #fff;
+    padding: 0 10px;
+    font-size: 0.9em;
+}
+.social{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.social a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-right: 19px;
+}
+.icons {
+    margin-top: 10px;
+    height: 90%;
+    border-radius: 10%;
+    border: none;
+}
 
+.icons:hover{
+    scale: 1.1;
+}
+
+/* main */
+main{
+    margin-top: 7vh;
+    height: 93vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 #calculator {
     position: relative;
     display: flex;
