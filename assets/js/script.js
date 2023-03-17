@@ -1,6 +1,5 @@
 const previousNumber = document.querySelector('#previous-number');
 const currentNumber = document.querySelector('#current-number');
-
 const numbers = document.querySelectorAll('.numbers');
 const operations = document.querySelectorAll('.operations');
 const ac = document.querySelector('#ac');
@@ -12,7 +11,7 @@ const substraction = document.querySelector('#substraction');
 const addition = document.querySelector('#addition');
 const equal = document.querySelector('#equal');
 
-let firstNumber = 0; //i numeri selezionati
+let firstNumber = ''; //i numeri selezionati
 let arrayNumber = []; //i numeri e gli operatori selezionati 
 
 //ad ogni numero selezionato aggiungo il click
@@ -23,6 +22,10 @@ numbers.forEach((number) => {
         if (!isNaN(arrayNumber.at(-1))) {
             arrayNumber.pop();
         }
+        console.log(`firstNumber ${firstNumber}`)
+        if(firstNumber === '.'){
+            firstNumber = '0.';
+        } 
         arrayNumber.push(+firstNumber);
         if (arrayNumber[arrayNumber.length - 1] === '.') {
             arrayNumber[arrayNumber.length - 1] = '0.';
@@ -32,13 +35,18 @@ numbers.forEach((number) => {
         console.log(roundAll(arrayNumber))
         let operation = roundAll(arrayNumber).join('');
 
+        checkLength(operation, previousNumber, currentNumber, arrayNumber)       ; 
         previousNumber.innerHTML = operation;
         currentNumber.innerHTML = firstNumber;
-    })
+        overflowScrollAuto();
+    }) 
 })
 
 operations.forEach((operation) => {
     operation.addEventListener('click', () => {
+        numbers.forEach((number) =>{
+            number.disabled = false;
+        });
         if (arrayNumber.length === 0 && firstNumber === '') {
         } else {
             if (arrayNumber[arrayNumber.length - 1] === '+' ||
@@ -109,6 +117,8 @@ ac.addEventListener('click', () => {
 // al clic cambia il segno del numero che si sta inserendo
 plusMinus.addEventListener('click', () => {
     arrayNumber[arrayNumber.length - 1] *= -1;
+    let operationString = arrayNumber.join('');
+    previousNumber.innerHTML = operationString;
     currentNumber.innerHTML = arrayNumber[arrayNumber.length - 1];
 })
 
@@ -134,4 +144,25 @@ function roundAll(array) {
     });
 
     return numberRounded;
+}
+
+function checkLength(operation, previousNumber, currentNumber, arrayNumber) {
+    if(operation.length > 6 && operation.length < 10){
+        previousNumber.style.fontSize = '1.5em';
+        currentNumber.style.fontSize = '2em';
+    } else if(operation.length >= 10 && operation.length < 13){
+        previousNumber.style.fontSize = '1.2em';
+        currentNumber.style.fontSize = '1.5em';
+        console.log('ultimo elemento arrayNumber : ' + typeof arrayNumber[arrayNumber.length-1]);
+    } else if(operation.length >= 13 && arrayNumber[arrayNumber.length-1].toString().length >= 13){
+        numbers.forEach((number)=>{
+            number.disabled = true;
+        })
+    }
+}
+
+//fa scorrere la barra dell'overflow all'ultimo elemento inserito
+function overflowScrollAuto(){
+    const screen = document.querySelector('#screen');
+    screen.scrollLeft = screen.scrollWidth;
 }
