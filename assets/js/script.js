@@ -116,15 +116,19 @@ ac.addEventListener('click', () => {
 
 // al clic cambia il segno del numero che si sta inserendo
 plusMinus.addEventListener('click', () => {
-    arrayNumber[arrayNumber.length - 1] *= -1;
-    let operationString = arrayNumber.join('');
-    previousNumber.innerHTML = operationString;
-    currentNumber.innerHTML = arrayNumber[arrayNumber.length - 1];
+    if(arrayNumber.length>0 && !isNaN(arrayNumber[arrayNumber.length-1])){
+        arrayNumber[arrayNumber.length - 1] *= -1;
+        let operationString = arrayNumber.join('');
+        previousNumber.innerHTML = operationString;
+        currentNumber.innerHTML = arrayNumber[arrayNumber.length - 1];
+    }
 })
 
 percentage.addEventListener('click', () => {
+    if(arrayNumber.length>0 && !isNaN(arrayNumber[arrayNumber.length-1])){
     arrayNumber[arrayNumber.length - 1] /= 100;
     currentNumber.innerHTML = arrayNumber[arrayNumber.length - 1];
+    }
 })
 
 //controlla se l'ultimo valore di un array è un numero, se non lo è rimuove il valore
